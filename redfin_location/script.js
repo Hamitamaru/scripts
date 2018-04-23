@@ -203,7 +203,7 @@ function distanceToPlaces(latitude, longitude) {
           wstr += "</a>";
           $('#distanceEntry' + (placeIndex*2) - 1).html(wstr);
         });
-        $.getJSON(//maps.googleapis.com/maps/api/directions/json?origin=" + latitude + "," + longitude + "&destination=" + address + "&mode=transit", function(data) {
+        $.getJSON("//maps.googleapis.com/maps/api/directions/json?origin=" + latitude + "," + longitude + "&destination=" + address + "&mode=transit", function(data) {
           var wstr = "";
           wstr += "<a href=\"https://maps.google.com?saddr=" + latitude + "," + longitude + "&daddr=" + address + "&dirflg=r\" target=\"_blank\">";
           wstr += label + " (Transit) : " + data.routes[0].legs[0].distance.text + " " + data.routes[0].legs[0].duration.text;
