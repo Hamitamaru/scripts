@@ -194,13 +194,21 @@ function distanceToPlaces(latitude, longitude) {
       var label = place['place' + placeIndex + 'Label'];
       var address = place['place' + placeIndex + 'Address'];
       if (address != '') {
-        $('#distanceList').append('<li id="distanceEntry' + placeIndex + '">Loading ...</li>');
+        $('#distanceList').append('<li id="distanceEntry' + ((placeIndex*2) - 1) + '">Loading ...</li>');
+        $('#distanceList').append('<li id="distanceEntry' + (placeIndex*2) + '">Loading ...</li>');
         $.getJSON("//maps.googleapis.com/maps/api/directions/json?origin=" + latitude + "," + longitude + "&destination=" + address, function(data) {
           var wstr = "";
           wstr += "<a href=\"https://maps.google.com?saddr=" + latitude + "," + longitude + "&daddr=" + address + "\" target=\"_blank\">";
-          wstr += label + ": " + data.routes[0].legs[0].distance.text;
+          wstr += label + " (Car) : " + data.routes[0].legs[0].distance.text + " " + data.routes[0].legs[0].duration.text;
           wstr += "</a>";
-          $('#distanceEntry' + placeIndex).html(wstr);
+          $('#distanceEntry' + (placeIndex*2) - 1).html(wstr);
+        });
+        $.getJSON(//maps.googleapis.com/maps/api/directions/json?origin=" + latitude + "," + longitude + "&destination=" + address + "&mode=transit", function(data) {
+          var wstr = "";
+          wstr += "<a href=\"https://maps.google.com?saddr=" + latitude + "," + longitude + "&daddr=" + address + "&dirflg=r\" target=\"_blank\">";
+          wstr += label + " (Transit) : " + data.routes[0].legs[0].distance.text + " " + data.routes[0].legs[0].duration.text;
+          wstr += "</a>";
+          $('#distanceEntry' + (placeIndex*2)).html(wstr);
         });
       }
     });
