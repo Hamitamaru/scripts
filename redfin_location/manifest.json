@@ -1,5 +1,5 @@
 {
-  "name": "Enhanced Redfin Data",
+  "name": "Enhanced Redfin Data Hamitamaru branch",
   "content_scripts": [
     {
       "matches": ["http://www.redfin.com/*", "https://www.redfin.com/*"],
@@ -19,5 +19,5 @@
   "options_page": "options.html",
   "manifest_version": 2,
   "version": "1.3",
-  "description": "Improves redfin experience with more information about houses."
+  "description": "Improves redfin experience with more information about houses. Just a clone for personal use. Original credit goes to vickyg3 checkout their stuff : https://github.com/vickyg3"
 }
